@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rules\Exists;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +37,8 @@ class PostController extends Controller
             'post_description' => $request->postDescription,
             'post_price' => $request->postPrice,
             'post_image' => $imageName,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
         Post::create($data);
         return back()->with(['createSuccess' => 'Post create success.']);
